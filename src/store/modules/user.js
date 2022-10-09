@@ -35,9 +35,8 @@ const actions = {
       login({ username: username.trim(), password: password }).then(response => {
        // const { data } = response.data
         if(response.code == 200){
-          debugger
-          commit('SET_TOKEN', response.data.SaTokenValue)
           setToken(response.data.SaTokenValue)
+          commit('SET_TOKEN', response.data.SaTokenValue)
           resolve()
         }
       }).catch(error => {
@@ -50,7 +49,7 @@ const actions = {
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
-        const { data } = response
+        const data  = response
 
         if (!data) {
           return reject('Verification failed, please Login again.')
