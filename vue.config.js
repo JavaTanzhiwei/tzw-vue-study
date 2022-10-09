@@ -29,23 +29,22 @@ module.exports = {
   assetsDir: 'static',
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
+  // webpack-dev-server 相关配置
   devServer: {
+    host: '0.0.0.0',
     port: port,
     open: true,
-    overlay: {
-      warnings: false,
-      errors: true
-    },
     proxy: {
-      '/api': {
-        target: 'http://192.168.1.203:8004',
-        ws: true,
-        changeOrigin: true, // 允许跨域
+      // detail: https://cli.vuejs.org/config/#devserver-proxy
+      [process.env.VUE_APP_BASE_API]: {
+        target: `http://localhost:8004`,
+        changeOrigin: true,
         pathRewrite: {
-          '^/api': '' // 请求的时候使用这个api就可以
+          ['^' + process.env.VUE_APP_BASE_API]: ''
         }
       }
-    }
+    },
+    disableHostCheck: true
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
