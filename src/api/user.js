@@ -1,8 +1,9 @@
 import request from '@/utils/request'
 
+/*登录*/
 export function login(data) {
   return request({
-    url: '/vue-admin-template/user/login',
+    url: '/tzwAuth/auth/user/doLogin',
     method: 'post',
     data
   })
