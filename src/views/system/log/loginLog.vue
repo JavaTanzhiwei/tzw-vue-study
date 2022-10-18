@@ -19,7 +19,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="状态" prop="status">
+<!--      <el-form-item label="状态" prop="status">
         <el-select
           v-model="queryParams.status"
           placeholder="登录状态"
@@ -33,7 +33,7 @@
             :value="dict.value"
           />
         </el-select>
-      </el-form-item>
+      </el-form-item>-->
       <el-form-item label="登录时间">
         <el-date-picker
           v-model="dateRange"
@@ -98,11 +98,11 @@
       <el-table-column label="访问编号" align="center" prop="infoId" />
       <el-table-column label="用户名称" align="center" prop="userName" :show-overflow-tooltip="true" sortable="custom" :sort-orders="['descending', 'ascending']" />
       <el-table-column label="地址" align="center" prop="ipaddr" width="130" :show-overflow-tooltip="true" />
-      <el-table-column label="登录状态" align="center" prop="status">
+<!--      <el-table-column label="登录状态" align="center" prop="status">
         <template slot-scope="scope">
           <dict-tag :options="dict.type.sys_common_status" :value="scope.row.status"/>
         </template>
-      </el-table-column>
+      </el-table-column>-->
       <el-table-column label="描述" align="center" prop="msg" />
       <el-table-column label="访问时间" align="center" prop="accessTime" sortable="custom" :sort-orders="['descending', 'ascending']" width="180">
         <template slot-scope="scope">
@@ -122,11 +122,11 @@
 </template>
 
 <script>
-import { list, delLogininfor, cleanLogininfor, unlockLogininfor } from "@/api/system/logininfor";
+import { list, delLogininfor, cleanLogininfor } from "@/api/system/logininfor";
 
 export default {
   name: "Logininfor",
-  dicts: ['sys_common_status'],
+  //dicts: ['sys_common_status'],
   data() {
     return {
       // 遮罩层

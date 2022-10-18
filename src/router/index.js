@@ -57,38 +57,26 @@ export const constantRoutes = [
   {
     path: '/system',
     component: Layout,
-    redirect: '/system/config',
     name: '系统管理',
-    meta: {
-      title: '系统管理',
-      icon: 'nested'
-    },
+    meta: { title: '系统管理', icon: 'nested' },
     children: [
       {
-        path: 'index',
+        path: 'config/index',
         component: () => import('@/views/system/config/index'),
         name: '参数配置',
-        meta: { title: '参数配置', icon: 'el-icon-s-help' },
+        meta: { title: '参数配置', icon: 'el-icon-s-help' }
       },
       {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: '日志管理',
-        meta: { title: '日志管理', icon: 'el-icon-s-help' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: '操作日志',
-            meta: { title: '操作日志' }
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: '登录日志',
-            meta: { title: '登录日志' }
-          }
-        ]
+        path: 'log/operLog',
+        component: () => import('@/views/system/log/operLog'),
+        name: '操作日志',
+        meta: { title: '操作日志', icon: 'el-icon-s-help' }
+      },
+      {
+        path: 'log/loginLog',
+        component: () => import('@/views/system/log/loginLog'),
+        name: '登录日志',
+        meta: { title: '登录日志', icon: 'el-icon-s-help' }
       }
     ]
   },

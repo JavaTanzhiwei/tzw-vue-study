@@ -19,7 +19,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="类型" prop="businessType">
+<!--      <el-form-item label="类型" prop="businessType">
         <el-select
           v-model="queryParams.businessType"
           placeholder="操作类型"
@@ -48,7 +48,7 @@
             :value="dict.value"
           />
         </el-select>
-      </el-form-item>
+      </el-form-item>-->
       <el-form-item label="操作时间">
         <el-date-picker
           v-model="dateRange"
@@ -100,21 +100,21 @@
 
     <el-table ref="tables" v-loading="loading" :data="list" @selection-change="handleSelectionChange" :default-sort="defaultSort" @sort-change="handleSortChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="日志编号" align="center" prop="operId" />
+      <el-table-column label="日志编号" align="center" prop="id" />
       <el-table-column label="系统模块" align="center" prop="title" />
-      <el-table-column label="操作类型" align="center" prop="businessType">
+<!--      <el-table-column label="操作类型" align="center" prop="businessType">
         <template slot-scope="scope">
           <dict-tag :options="dict.type.sys_oper_type" :value="scope.row.businessType"/>
         </template>
-      </el-table-column>
+      </el-table-column>-->
       <el-table-column label="请求方式" align="center" prop="requestMethod" />
       <el-table-column label="操作人员" align="center" prop="operName" :show-overflow-tooltip="true" sortable="custom" :sort-orders="['descending', 'ascending']" width="100"/>
       <el-table-column label="主机" align="center" prop="operIp" width="130" :show-overflow-tooltip="true" />
-      <el-table-column label="操作状态" align="center" prop="status">
+<!--      <el-table-column label="操作状态" align="center" prop="status">
         <template slot-scope="scope">
           <dict-tag :options="dict.type.sys_common_status" :value="scope.row.status"/>
         </template>
-      </el-table-column>
+      </el-table-column>-->
       <el-table-column label="操作日期" align="center" prop="operTime" sortable="custom" :sort-orders="['descending', 'ascending']" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.operTime) }}</span>
@@ -145,7 +145,8 @@
       <el-form ref="form" :model="form" label-width="100px" size="mini">
         <el-row>
           <el-col :span="12">
-            <el-form-item label="操作模块：">{{ form.title }} / {{ typeFormat(form) }}</el-form-item>
+<!--            <el-form-item label="操作模块：">{{ form.title }} / {{ typeFormat(form) }}</el-form-item>-->
+            <el-form-item label="操作模块：">{{ form.title }}</el-form-item>
             <el-form-item
               label="登录信息："
             >{{ form.operName }} / {{ form.operIp }}</el-form-item>
@@ -189,7 +190,7 @@ import { list, delOperlog, cleanOperlog } from "@/api/system/operlog";
 
 export default {
   name: "Operlog",
-  dicts: ['sys_oper_type', 'sys_common_status'],
+  //dicts: ['sys_oper_type', 'sys_common_status'],
   data() {
     return {
       // 遮罩层
@@ -238,9 +239,9 @@ export default {
       );
     },
     // 操作日志类型字典翻译
-    typeFormat(row, column) {
+  /*  typeFormat(row, column) {
       return this.selectDictLabel(this.dict.type.sys_oper_type, row.businessType);
-    },
+    },*/
     /** 搜索按钮操作 */
     handleQuery() {
       this.queryParams.pageNum = 1;
