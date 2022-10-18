@@ -77,6 +77,12 @@ export const constantRoutes = [
         component: () => import('@/views/system/log/loginLog'),
         name: '登录日志',
         meta: { title: '登录日志', icon: 'el-icon-s-help' }
+      },
+      {
+        path: 'dict',
+        component: () => import('@/views/system/dict/index'),
+        name: '数据字典',
+        meta: { title: '数据字典', icon: 'el-icon-s-help' }
       }
     ]
   },
