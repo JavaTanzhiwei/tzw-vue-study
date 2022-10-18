@@ -108,7 +108,7 @@
         </template>
       </el-table-column>-->
       <el-table-column label="请求方式" align="center" prop="requestMethod" />
-      <el-table-column label="操作人员" align="center" prop="operName" :show-overflow-tooltip="true" sortable="custom" :sort-orders="['descending', 'ascending']" width="100"/>
+      <el-table-column label="操作人员" align="center" prop="operName" :show-overflow-tooltip="true" sortable="custom" :sort-orders="['descending', 'ascending']" width="130"/>
       <el-table-column label="主机" align="center" prop="operIp" width="130" :show-overflow-tooltip="true" />
 <!--      <el-table-column label="操作状态" align="center" prop="status">
         <template slot-scope="scope">
