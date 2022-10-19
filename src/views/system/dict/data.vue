@@ -5,7 +5,7 @@
         <el-select v-model="queryParams.dictType">
           <el-option
             v-for="item in typeOptions"
-            :key="item.dictId"
+            :key="item.id"
             :label="item.dictName"
             :value="item.dictType"
           />
@@ -19,7 +19,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-<!--      <el-form-item label="状态" prop="status">
+      <el-form-item label="状态" prop="status">
         <el-select v-model="queryParams.status" placeholder="数据状态" clearable>
           <el-option
             v-for="dict in dict.type.sys_normal_disable"
@@ -28,7 +28,7 @@
             :value="dict.value"
           />
         </el-select>
-      </el-form-item>-->
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -83,18 +83,13 @@
           @click="handleClose"
         >关闭</el-button>
       </el-col>
-      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
+<!--      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>-->
     </el-row>
 
     <el-table v-loading="loading" :data="dataList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="字典编码" align="center" prop="dictCode" />
-      <el-table-column label="字典标签" align="center" prop="dictLabel">
-        <template slot-scope="scope">
-          <span v-if="scope.row.listClass == '' || scope.row.listClass == 'default'">{{scope.row.dictLabel}}</span>
-          <el-tag v-else :type="scope.row.listClass == 'primary' ? '' : scope.row.listClass">{{scope.row.dictLabel}}</el-tag>
-        </template>
-      </el-table-column>
+      <el-table-column label="字典编码" align="center" prop="id" />
+      <el-table-column label="字典标签" align="center" prop="dictLabel"/>
       <el-table-column label="字典键值" align="center" prop="dictValue" />
       <el-table-column label="字典排序" align="center" prop="dictSort" />
       <el-table-column label="状态" align="center" prop="status">
@@ -162,7 +157,7 @@
             ></el-option>
           </el-select>
         </el-form-item>
-<!--        <el-form-item label="状态" prop="status">
+        <el-form-item label="状态" prop="status">
           <el-radio-group v-model="form.status">
             <el-radio
               v-for="dict in dict.type.sys_normal_disable"
@@ -170,7 +165,7 @@
               :label="dict.value"
             >{{dict.label}}</el-radio>
           </el-radio-group>
-        </el-form-item>-->
+        </el-form-item>
         <el-form-item label="备注" prop="remark">
           <el-input v-model="form.remark" type="textarea" placeholder="请输入内容"></el-input>
         </el-form-item>
@@ -189,7 +184,7 @@ import { optionselect as getDictOptionselect, getType } from "@/api/system/dict/
 
 export default {
   name: "Data",
-  //dicts: ['sys_normal_disable'],
+  dicts: ['sys_normal_disable'],
   data() {
     return {
       // 遮罩层
@@ -266,7 +261,7 @@ export default {
     };
   },
   created() {
-    const dictId = this.$route.params && this.$route.params.dictId;
+    const dictId = this.$route.params && this.$route.params.id;
     this.getType(dictId);
     this.getTypeList();
   },

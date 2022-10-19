@@ -108,7 +108,7 @@
       <el-table-column label="字典名称" align="center" prop="dictName" :show-overflow-tooltip="true" />
       <el-table-column label="字典类型" align="center" :show-overflow-tooltip="true">
         <template slot-scope="scope">
-          <router-link :to="'/system/dict-data/index/' + scope.row.dictId" class="link-type">
+          <router-link :to="'/system/dict-data/index/' + scope.row.id" class="link-type">
             <span>{{ scope.row.dictType }}</span>
           </router-link>
         </template>
@@ -285,7 +285,7 @@ export default {
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();
-      const dictId = row.dictId || this.ids
+      const dictId = row.id || this.ids
       getType(dictId).then(response => {
         this.form = response.data;
         this.open = true;
@@ -296,7 +296,7 @@ export default {
     submitForm: function() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          if (this.form.dictId != undefined) {
+          if (this.form.id != undefined) {
             updateType(this.form).then(response => {
               this.$modal.msgSuccess("修改成功");
               this.open = false;
@@ -314,7 +314,7 @@ export default {
     },
     /** 删除按钮操作 */
     handleDelete(row) {
-      const dictIds = row.dictId || this.ids;
+      const dictIds = row.id || this.ids;
       this.$modal.confirm('是否确认删除字典编号为"' + dictIds + '"的数据项？').then(function() {
         return delType(dictIds);
       }).then(() => {

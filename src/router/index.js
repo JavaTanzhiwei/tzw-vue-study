@@ -83,6 +83,13 @@ export const constantRoutes = [
         component: () => import('@/views/system/dict/index'),
         name: '数据字典',
         meta: { title: '数据字典', icon: 'el-icon-s-help' }
+      },
+      {
+        path: 'dict-data',
+        hidden: false,
+        component: () => import('@/views/system/dict/data'),
+        name: '字典数据',
+        meta: { title: '字典数据', icon: 'el-icon-s-help' }
       }
     ]
   },
