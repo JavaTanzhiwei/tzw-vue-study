@@ -19,7 +19,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-<!--      <el-form-item label="状态" prop="status">
+      <el-form-item label="状态" prop="status">
         <el-select
           v-model="queryParams.status"
           placeholder="字典状态"
@@ -33,7 +33,7 @@
             :value="dict.value"
           />
         </el-select>
-      </el-form-item>-->
+      </el-form-item>
       <el-form-item label="创建时间">
         <el-date-picker
           v-model="dateRange"
@@ -113,11 +113,11 @@
           </router-link>
         </template>
       </el-table-column>
-<!--      <el-table-column label="状态" align="center" prop="status">
+      <el-table-column label="状态" align="center" prop="status">
         <template slot-scope="scope">
           <dict-tag :options="dict.type.sys_normal_disable" :value="scope.row.status"/>
         </template>
-      </el-table-column>-->
+      </el-table-column>
       <el-table-column label="备注" align="center" prop="remark" :show-overflow-tooltip="true" />
       <el-table-column label="创建时间" align="center" prop="createTime" width="180">
         <template slot-scope="scope">
@@ -159,7 +159,7 @@
         <el-form-item label="字典类型" prop="dictType">
           <el-input v-model="form.dictType" placeholder="请输入字典类型" />
         </el-form-item>
-<!--        <el-form-item label="状态" prop="status">
+        <el-form-item label="状态" prop="status">
           <el-radio-group v-model="form.status">
             <el-radio
               v-for="dict in dict.type.sys_normal_disable"
@@ -167,7 +167,7 @@
               :label="dict.value"
             >{{dict.label}}</el-radio>
           </el-radio-group>
-        </el-form-item>-->
+        </el-form-item>
         <el-form-item label="备注" prop="remark">
           <el-input v-model="form.remark" type="textarea" placeholder="请输入内容"></el-input>
         </el-form-item>
@@ -185,7 +185,7 @@ import { listType, getType, delType, addType, updateType, refreshCache } from "@
 
 export default {
   name: "Dict",
-  //dicts: ['sys_normal_disable'],
+  dicts: ['sys_normal_disable'],
   data() {
     return {
       // 遮罩层
